@@ -14,11 +14,11 @@ const routes: Routes = [
     children: [
       {
         path: 'dados',
-        loadChildren: './vistoria/vistoria.module#VistoriaPageModule'
+        loadChildren: '../local/dados/dados.module#DadosPageModule'
       },
       {
         path: 'comodos',
-        loadChildren: './vistoria/vistoria.module#VistoriaPageModule'
+        loadChildren: '../local/comodos/comodos.module#ComodosPageModule'
       }
     ]
   }
