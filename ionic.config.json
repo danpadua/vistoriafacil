@@ -1,0 +1,7 @@
+{
+  "name": "vistoriaFacil",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

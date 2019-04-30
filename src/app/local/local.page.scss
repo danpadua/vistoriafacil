@@ -1,0 +1,13 @@
+.welcome-card {
+  max-height: 35vh;
+  overflow: hidden;
+
+  ion-card-title {
+    display: flex;
+    justify-content: center;
+  }
+
+  ion-button {
+    color: #000 !important; 
+  }
+}

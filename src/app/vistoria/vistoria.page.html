@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Nova Vistoria
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Nome</ion-label>
+    <ion-input name="nome"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Local</ion-label>
+    <ion-select placeholder="Selecione o local" name="local">
+      <ion-select-option value="1">Local 1</ion-select-option>
+      <ion-select-option value="2">Local 2</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Data da Vistoria</ion-label>
+    <ion-datetime name="dataVistoria" display-format="DD/MM/YYYY"></ion-datetime>
+  </ion-item>
+  <br>
+  <ion-button expand="block">Iniciar Vistoria</ion-button>
+</ion-content>
