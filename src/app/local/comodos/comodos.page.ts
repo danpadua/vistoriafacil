@@ -8,18 +8,6 @@ import { AlertController } from '@ionic/angular';
 })
 export class ComodosPage {
   private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
   public items: Array<{ title: string; icon: string }> = [];
   constructor(public alertController : AlertController) {
   }
@@ -53,7 +41,7 @@ export class ComodosPage {
           handler: (t) => {
             this.items.push({
               title: t.nome,
-              icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+              icon: 'cube'
             })
           }
         }

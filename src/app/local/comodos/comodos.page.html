@@ -1,7 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-  </ion-toolbar>
-</ion-header>
+<ion-toolbar></ion-toolbar>
 
 <ion-content>
   <ion-list>
@@ -18,6 +15,12 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+  <ion-row class="ion-justify-content-center" *ngIf="items.length === 0">
+    <ion-chip color="secondary">
+      <ion-label color="dark">Nenhum cômodo registrado</ion-label>
+    </ion-chip>
+  </ion-row>
+  
    <!-- fab placed to the bottom start -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="formPrompAlert()">
