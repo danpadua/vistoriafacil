@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -19,14 +20,46 @@ export class ComodosPage {
     'bluetooth',
     'build'
   ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+  public items: Array<{ title: string; icon: string }> = [];
+  constructor(public alertController : AlertController) {
+  }
+
+  remove(item: any) {
+    this.items = this.items.filter((i) => {
+      return i !== item
+    })
+  }
+
+  async formPrompAlert() {
+    const alert = await this.alertController.create({
+      header: 'Novo cômodo',
+      inputs: [
+        {
+          name: 'nome',
+          type: 'text',
+          placeholder: 'Nome'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Salvar',
+          handler: (t) => {
+            this.items.push({
+              title: t.nome,
+              icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+            })
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

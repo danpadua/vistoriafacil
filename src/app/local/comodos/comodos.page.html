@@ -5,17 +5,22 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-icon [name]="item.icon" slot="start"></ion-icon>
-      {{item.title}}
-      <div class="item-note" slot="end">
-        {{item.note}}
-      </div>
-    </ion-item>
+    <ion-item-sliding *ngFor="let item of items">
+      <ion-item>
+        <ion-icon [name]="item.icon" slot="start"></ion-icon>
+        {{item.title}}
+        <div class="item-note" slot="end">
+          {{item.note}}
+        </div>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="remove(item)">Excluir</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
    <!-- fab placed to the bottom start -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button (click)="formPrompAlert()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
