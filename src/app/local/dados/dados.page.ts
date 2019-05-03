@@ -35,16 +35,27 @@ export class DadosPage {
 
     this.mapOptions = {
       center: this.location,
-      zoom: 21,
-      mapTypeControl: false
+      zoom: 15,
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: false
+    }
+
+    function handleEvent(event) {
+      if (!this.location) this.location = { lat: null, lng: null }
+      this.location.lat = event.latLng.lat();
+      this.location.lng = event.latLng.lng();
+      this.map.setCenter(this.location)
     }
 
     setTimeout(() => {
       this.map = new google.maps.Map(this.mapElement.nativeElement, this.mapOptions);
       this.markerOptions.position = this.location;
       this.markerOptions.map = this.map;
+      this.markerOptions.draggable = true;
       this.markerOptions.title = 'Minha localização';
       this.marker = new google.maps.Marker(this.markerOptions);
+      this.marker.addListener('dragend', handleEvent);
     }, 3000)
   }
 }
