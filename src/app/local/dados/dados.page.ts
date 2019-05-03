@@ -1,14 +1,12 @@
 import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-//https://medium.com/ramsatt/integrate-google-maps-on-ionic-4-beta-application-37497dbc12e3
+declare var google: any;
 @Component({
   selector: 'app-home',
   templateUrl: 'dados.page.html',
   styleUrls: ['dados.page.scss'],
 })
 
-@ViewChild('Map') mapElement: ElementRef;
-declare var google: any;
 export class DadosPage {
   @ViewChild('Map') mapElement: ElementRef;
   map: any;
@@ -17,8 +15,6 @@ export class DadosPage {
   markerOptions: any = { position: null, map: null, title: null };
   marker: any;
   apiKey: any = 'AIzaSyBCV4H2ZKhVUIsnueWQDOEZTUyO4NUrDbA';
-
-  public geolocation: Geolocation
 
   constructor(public zone: NgZone, public geolocation: Geolocation) {
     let script = document.createElement('script');

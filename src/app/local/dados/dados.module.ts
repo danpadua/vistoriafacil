@@ -5,9 +5,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { RouterModule, RouteReuseStrategy } from '@angular/router';
 
 import { DadosPage } from './dados.page';
-import { AppComponent } from 'src/app/app.component';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @NgModule({
@@ -15,7 +13,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
+    IonicModule.forRoot(),
     RouterModule.forChild([
       {
         path: '',
@@ -23,10 +21,9 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
       }
     ])
   ],
-  declarations: [DadosPage, AppComponent],
+  declarations: [DadosPage],
   providers: [
     StatusBar,
-    SplashScreen,
     Geolocation,
     {provide:RouteReuseStrategy, useClass: IonicRouteStrategy}
   ]
