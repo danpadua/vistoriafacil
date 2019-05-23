@@ -1,6 +1,9 @@
 import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Http, Response, Headers, RequestOptions} from '@angular/http';
 declare var google: any;
+
+
 @Component({
   selector: 'app-home',
   templateUrl: 'dados.page.html',
@@ -16,9 +19,11 @@ export class DadosPage {
   marker: any;
   apiKey: any = 'AIzaSyBCV4H2ZKhVUIsnueWQDOEZTUyO4NUrDbA';
 
-  constructor(public zone: NgZone, public geolocation: Geolocation) {
+  constructor(public zone: NgZone, public geolocation: Geolocation, public http : Http) {
     let script = document.createElement('script');
     script.id = 'googleMap';
+    var _apiKey = this.apiKey;
+    var _http = this.http;
 
     if (this.apiKey) {
       script.src = 'https://maps.googleapis.com/maps/api/js?key=' + this.apiKey;
@@ -46,6 +51,21 @@ export class DadosPage {
       this.location.lat = event.latLng.lat();
       this.location.lng = event.latLng.lng();
       this.map.setCenter(this.location)
+      setAddrLatLon(this.location)
+    }
+
+    function setAddrLatLon(location) {
+      if (location) {
+        var urlApi = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
+        var apiAddress = urlApi.concat(location.lat, ',', location.lng, '&key=', _apiKey)
+        _http.get(apiAddress, {})
+          .subscribe((res: Response) => {
+            if (res.status === 200) {
+              var result = JSON.parse(res.text());
+              console.log(result);
+            }
+          })
+      }
     }
 
     setTimeout(() => {
